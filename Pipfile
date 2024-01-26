@@ -10,6 +10,7 @@ python-dotenv = "*"
 flask-sqlalchemy = "*"
 sqlalchemy-serializer = "*"
 faker = "*"
+flask-migrate = "*"
 
 [dev-packages]
 
