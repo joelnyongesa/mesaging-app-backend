@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_serializer import SerializerMixin
 from uuid import uuid4
-from faker import Faker
+
 
 db = SQLAlchemy()
 
@@ -18,8 +18,8 @@ class User(db.Model, SerializerMixin):
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
     phone_number = db.Column(db.String(10))
-    email_address = db.Column(db.String(255))
-    created_at = db.Column(db.DateTime, server_defalt=db.func.now())
+    email_address = db.Column(db.String(255), unique=True)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
 
     messages = db.relationship('Message', backref='user')
 
@@ -36,8 +36,9 @@ class Agent(db.Model, SerializerMixin):
     id = db.Column(db.String, primary_key=True, unique=True, default=get_uuid)
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
+    email = db.Column(db.String(255), unique=True)
     category = db.Column(db.String)
-    created_at = db.Column(db.DateTime, server_defalt=db.func.now())
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
 
     messages = db.relationship('Message',backref='agent')
 
