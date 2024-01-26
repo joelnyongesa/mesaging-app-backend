@@ -12,7 +12,7 @@ class User(db.Model, SerializerMixin):
 
     __tablename__ = "users"
 
-    serialize_rules=("-messages.user")
+    serialize_rules=("-messages.user",)
 
     id = db.Column(db.String, primary_key=True, unique=True, default=get_uuid)
     first_name = db.Column(db.String(50))
@@ -31,7 +31,7 @@ class Agent(db.Model, SerializerMixin):
 
     __tablename__ = "agents"
 
-    serialize_rules=("-messages.agent")
+    serialize_rules=("-messages.agent",)
 
     id = db.Column(db.String, primary_key=True, unique=True, default=get_uuid)
     first_name = db.Column(db.String(50))
@@ -50,7 +50,7 @@ class Message(db.Model, SerializerMixin):
 
     __tablename__ = "messages"
 
-    serialize_rules = ("-user.messages", "-agent.messages")
+    serialize_rules = ("-user.messages", "-agent.messages",)
 
     id = db.Column(db.String, primary_key=True, unique=True, default=get_uuid)
     category = db.Column(db.String)
